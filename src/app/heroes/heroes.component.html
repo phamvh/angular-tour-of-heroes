@@ -1,0 +1,35 @@
+<h2>My heroes</h2>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes">
+    <!-- button type="button"
+            [class.selected]="hero === selectedHero"
+            (click)="onSelect(hero)">
+      <span class="badge">{{hero.id}}</span>
+      <span class="name">{{hero.name }}</span>
+    </button -->
+    <a routerLink="/detail/{{hero.id}}">
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
+    <button type="button" class="delete" title="delete hero"
+            (click)="delete(hero)">x</button>
+  </li>
+</ul>
+
+<div>
+  <label for="new-hero">Hero name: </label>
+  <!--  #heroName is angular's reference variable declaration -->
+  <input id="new-hero" #heroName />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button type="button" class="add-button"
+          (click)="add(heroName.value); heroName.value=''">
+    Add hero
+  </button>
+</div>
+
+<!-- It's a one-way data binding from the selectedHero
+property of the HeroesComponent (parent) to the hero property of
+the target element (child),
+which maps to the hero property of the HeroDetailComponent. -->
+<!-- app-hero-detail [hero]="selectedHero"></app-hero-detail -->
+
